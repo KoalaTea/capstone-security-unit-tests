@@ -1,3 +1,7 @@
 HSTS enabled
+HTTPS is set up
 CSP set up on all pages
-
+Crypto tests (no depreciated crypto)
+flags on cookies
+auth is thought of for everypage.
+CSRF
