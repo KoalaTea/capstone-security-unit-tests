@@ -3,6 +3,7 @@ import unittest
 testmodules = [
     'tests.basic_web_test',
     'tests.csrf_test',
+    'tests.hsts_test',
     'tests.csp_test'
     ]
 

@@ -5,7 +5,8 @@ import re
 
 class CSRFTest(unittest.TestCase):
     def setUp(self):
-        self.app = create_app()
+        self.app = create_app(TESTING=True)
+        self.app.debug = True
         self.client = self.app.test_client()
 
     def csrf(self, endpoint, data, fail_text, success_text, fail_status_code, success_status_code):
@@ -15,6 +16,7 @@ class CSRFTest(unittest.TestCase):
             csrf_token = soup.find('input', {'id': 'csrf_token'})
             self.assertIsNotNone(csrf_token)
             # verify data fails without csrf_token
+            resp = self.client.post(endpoint, data=data)
             resp = self.client.post(endpoint, data=data)
             soup = BeautifulSoup(resp.data, 'html.parser')
             # assert success text not present without csrf_token TODO
@@ -31,7 +33,7 @@ class CSRFTest(unittest.TestCase):
             '''
             # what if there is no csrf_token at all in the text? TODO
             data['csrf_token'] = csrf_token['value']
-            resp = self.client.post(endpoint, data=data)
+            resp = self.client.post(endpoint, data=data, follow_redirects=True)
             soup = BeautifulSoup(resp.data, 'html.parser')
             # assert fail conditions are missing TODO
             # assert success conditions are present with csrf_token

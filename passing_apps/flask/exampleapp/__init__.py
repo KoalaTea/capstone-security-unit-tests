@@ -10,6 +10,6 @@ def create_app(**config_overrides):
     from exampleapp.views import views as views_blueprint
     app.register_blueprint(views_blueprint)
     app.config.update(config_overrides)
-    Talisman(app, content_security_policy=csp, force_https=False)
+    Talisman(app, content_security_policy=csp)
     return app
 

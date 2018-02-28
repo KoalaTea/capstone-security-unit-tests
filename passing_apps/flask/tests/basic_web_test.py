@@ -7,5 +7,5 @@ class BasicWebTest(unittest.TestCase):
         self.client = self.app.test_client()
 
     def test_index(self):
-        resp = self.client.get('/index')
+        resp = self.client.get('/index', follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
