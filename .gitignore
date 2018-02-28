@@ -1,0 +1,6 @@
+/base_web_apps/java/examplejavaapp/nbproject/private/
+/base_web_apps/java/examplejavaapp/build/
+*.pyc
+__pycache__
+/base_web_apps/java/examplejavaapp/target/
+/base_web_apps/java/examplejavaapp/examplejavaapp/target/

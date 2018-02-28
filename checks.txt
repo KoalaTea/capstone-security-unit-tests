@@ -1,19 +1,19 @@
-HSTS enabled
-HTTPS is set up
-CSP set up on all pages
-Crypto tests (no depreciated crypto)
++HSTS enabled
++HTTPS is set up
++CSP set up on all pages
++Crypto tests (no depreciated crypto)
 flags on cookies
 auth is thought of for everypage.
-CSRF
-lack of os command calls
-there is logging
++CSRF
++lack of os command calls
++there is logging - logging is not to standard out
 XEE?
 two-auth enabled/set up
 security settings for in use applications
 default or debug accounts are disabled
 patched
 settings for the server
-headers in general
++headers in general
     HTTP Strict Transport Security (HSTS)
     Public Key Pinning Extension for HTTP (HPKP)
     X-Frame-Options
@@ -23,3 +23,5 @@ headers in general
     X-Permitted-Cross-Domain-Policies
     Referrer-Policy
     Expect-CT
+
+dockerize the apps
