@@ -1,13 +1,12 @@
-FROM ubuntu:16.04
+FROM python:3
 
-WORKDIR /exampleapp
+WORKDIR /app
 
-COPY requirements.txt /exampleapp
-RUN apt-get update -y \
-    && apt-get install python3 -y \
-    && rm -rf /var/lib/apt/lists/*
-COPY exampleapp /exampleapp
-RUN python3 -r /exampleapp/requirements.txt
-EXPOSE 5000
+RUN mkdir /app/exampleapp
+COPY run.py /app
+COPY config.py /app
+COPY requirements.txt /app
+RUN pip install -r /app/requirements.txt
+COPY exampleapp /app/exampleapp
 
-CMD ["python3" "/exampleapp/run.py"]
+CMD ["python3", "-u", "/app/run.py"]
