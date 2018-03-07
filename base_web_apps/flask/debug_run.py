@@ -2,7 +2,7 @@ from exampleapp import create_app
 
 def main():
     app = create_app()
-    app.run(host='0.0.0.0')
+    app.run(debug=True)
 
 if __name__ == '__main__':
     main()

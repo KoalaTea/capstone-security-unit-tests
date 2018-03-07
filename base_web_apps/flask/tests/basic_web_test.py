@@ -9,3 +9,6 @@ class BasicWebTest(unittest.TestCase):
     def test_index(self):
         resp = self.client.get('/index', follow_redirects=True)
         self.assertEqual(resp.status_code, 200)
+
+if __name__ == '__main__':
+    unittest.main()

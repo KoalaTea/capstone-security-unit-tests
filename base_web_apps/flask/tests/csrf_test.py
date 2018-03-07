@@ -52,3 +52,6 @@ class CSRFTest(unittest.TestCase):
         for page in pages:
             self.csrf(page['endpoint'], page['data'], page['fail_text'], page['success_text'],
                       page['fail_status_code'], page['success_status_code'])
+
+if __name__ == '__main__':
+    unittest.main()

@@ -4,7 +4,7 @@
 +Crypto tests (no depreciated crypto)
 flags on cookies
 auth is thought of for everypage.
-+CSRF? potentially complete?
+\+CSRF? potentially complete?
 +lack of os command calls
 +there is logging - logging is not to standard out
 -XEE?
@@ -16,12 +16,12 @@ auth is thought of for everypage.
 +headers in general
     \HTTP Strict Transport Security (HSTS)
     Public Key Pinning Extension for HTTP (HPKP)
-    X-Frame-Options
-    X-XSS-Protection
-    X-Content-Type-Options
-    Content-Security-Policy
-    X-Permitted-Cross-Domain-Policies
-    Referrer-Policy
-    Expect-CT
+    \X-Frame-Options
+    \X-XSS-Protection
+    \X-Content-Type-Options
+    \Content-Security-Policy
+    \X-Permitted-Cross-Domain-Policies
+    \Referrer-Policy
+    \Expect-CT
 
 dockerize the apps
