@@ -4,3 +4,4 @@
 __pycache__
 /base_web_apps/java/examplejavaapp/target/
 /base_web_apps/java/examplejavaapp/examplejavaapp/target/
+.mvn
