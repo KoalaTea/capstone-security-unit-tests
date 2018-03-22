@@ -1,19 +1,18 @@
 \+HSTS enabled
 \+HTTPS is set up
 \+CSP set up on all pages? does it need to be all pages?
-+Crypto tests (no depreciated crypto)
+\+Crypto tests (no depreciated crypto) \\ done in bandit
 flags on cookies
 auth is thought of for everypage.
 \+CSRF? potentially complete?
 \lack of os command calls \\ done in bandit
-+there is logging - logging is not to standard out
--XEE?
+\+there is logging - logging is not to standard out \\ done for python
 ?two-auth enabled/set up
 ?security settings for in use applications
-?default or debug accounts are disabled
-?patched
-?settings for the server
-+headers in general
+\-default or debug accounts are disabled \\ per project tests
+\?patched \\ per project test
+\?settings for the server \\ do not even know what I plan here
++headers in general \\only have HPKP to go
     \HTTP Strict Transport Security (HSTS)
     ?Public Key Pinning Extension for HTTP (HPKP)
     \X-Frame-Options
