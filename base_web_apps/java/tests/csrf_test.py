@@ -2,12 +2,13 @@ import unittest
 from exampleapp import create_app
 from bs4 import BeautifulSoup
 import re
+import requests
 
 class CSRFTest(unittest.TestCase):
     def setUp(self):
         self.app = create_app(TESTING=True)
         self.app.debug = True
-        self.client = self.app.test_client()
+        self.client = requests
 
     def csrf(self, endpoint, data, fail_text, success_text, fail_status_code, success_status_code):
             # assert token exists

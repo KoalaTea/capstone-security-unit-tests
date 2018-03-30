@@ -7,7 +7,7 @@ auth is thought of for everypage.
 \+CSRF? potentially complete?
 \lack of os command calls \\ done in bandit
 \+there is logging - logging is not to standard out \\ done for python
-?two-auth enabled/set up
+\?two-auth enabled/set up \\ seems impossible for this project being during school
 ?security settings for in use applications
 \-default or debug accounts are disabled \\ per project tests
 \?patched \\ per project test

@@ -1,12 +1,13 @@
 import unittest
 from exampleapp import create_app
 from bs4 import BeautifulSoup
+import requests
 
 # LOL THIS PROBABLY WONT WORK :D enabled at web application level
 class HSTSTest(unittest.TestCase):
     def setUp(self):
         self.app = create_app()
-        self.client = self.app.test_client()
+        self.client = requests
 
     def hsts(self, resp):
         # check each header to see if one is HSTS

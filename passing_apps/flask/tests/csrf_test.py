@@ -19,28 +19,30 @@ class CSRFTest(unittest.TestCase):
             resp = self.client.post(endpoint, data=data)
             resp = self.client.post(endpoint, data=data)
             soup = BeautifulSoup(resp.data, 'html.parser')
-            # assert success text not present without csrf_token TODO
             # assert fail conditions are present without csrf_token
             if fail_text:
                 self.assertIsNotNone(soup.find(text=re.compile(fail_text)))
             if fail_status_code:
                 self.assertEqual(resp.status_code, fail_status_code)
+            # asset success conditions are not presentn without crsf_token
+            if success_text:
+                self.assertIsNone(soup.find(text=re.compile(success_text)))
+            if success_status_code:
+                self.assertNotEqual(resp.status_code, success_status_code)
             # verify csrf token works
-            '''
-            resp = self.client.get(endpoint)
-            soup = BeautifulSoup(resp.data, 'html.parser')
-            csrf_token = soup.find('input', {'id': 'csrf_token'})['value']
-            '''
-            # what if there is no csrf_token at all in the text? TODO
             data['csrf_token'] = csrf_token['value']
             resp = self.client.post(endpoint, data=data, follow_redirects=True)
             soup = BeautifulSoup(resp.data, 'html.parser')
-            # assert fail conditions are missing TODO
             # assert success conditions are present with csrf_token
             if success_text:
                 self.assertIsNotNone(soup.find(text=re.compile(success_text)))
             if success_status_code:
                 self.assertEqual(resp.status_code, success_status_code)
+            # assert fail conditions are not present with csrf_token
+            if fail_text:
+                self.assertIsNone(soup.find(text=re.compile(fail_text)))
+            if success_status_code:
+                self.assertNotEqual(resp.status_code, fail_status_code)
 
 
     def test_csrf(self):
