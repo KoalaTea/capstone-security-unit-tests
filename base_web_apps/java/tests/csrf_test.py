@@ -1,24 +1,22 @@
 import unittest
-from exampleapp import create_app
 from bs4 import BeautifulSoup
 import re
 import requests
 
 class CSRFTest(unittest.TestCase):
     def setUp(self):
-        self.app = create_app(TESTING=True)
-        self.app.debug = True
         self.client = requests
+        self.url = 'http://127.0.0.1'
 
     def csrf(self, endpoint, data, fail_text, success_text, fail_status_code, success_status_code):
             # assert token exists
-            resp = self.client.get(endpoint)
+            resp = self.client.get(self.url + endpoint)
             soup = BeautifulSoup(resp.data, 'html.parser')
             csrf_token = soup.find('input', {'id': 'csrf_token'})
             self.assertIsNotNone(csrf_token)
             # verify data fails without csrf_token
-            resp = self.client.post(endpoint, data=data)
-            resp = self.client.post(endpoint, data=data)
+            resp = self.client.post(self.url+endpoint, data=data)
+            resp = self.client.post(self.url+endpoint, data=data)
             soup = BeautifulSoup(resp.data, 'html.parser')
             # assert fail conditions are present without csrf_token
             if fail_text:
@@ -32,7 +30,7 @@ class CSRFTest(unittest.TestCase):
                 self.assertNotEqual(resp.status_code, success_status_code)
             # verify csrf token works
             data['csrf_token'] = csrf_token['value']
-            resp = self.client.post(endpoint, data=data, follow_redirects=True)
+            resp = self.client.post(self.url+endpoint, data=data, follow_redirects=True)
             soup = BeautifulSoup(resp.data, 'html.parser')
             # assert success conditions are present with csrf_token
             if success_text:

@@ -11,5 +11,13 @@ public class DemoRouter{
   public String viewHome(){
       return "home";
   }
+  @RequestMapping(value="/", method=RequestMethod.GET)
+  public String viewDefault(){
+    return "home";
+  }
+  @RequestMapping(value="/index", method=RequestMethod.GET)
+  public String viewIndex(){
+      return "home";
+  }
 
 }

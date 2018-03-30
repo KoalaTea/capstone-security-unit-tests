@@ -1,14 +1,12 @@
 import unittest
-from exampleapp import create_app
 from bs4 import BeautifulSoup
 import requests
 
 class HeadersTest(unittest.TestCase):
     def setUp(self):
-        self.app = create_app()
-        self.app.debug = True
         self.client = requests
-        self.resp = self.client.get('/')
+        self.url = "http://127.0.0.1:8080"
+        self.resp = self.client.get(self.url+'/')
         self.headers = {}
         self._headers()
 
