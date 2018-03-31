@@ -20,7 +20,7 @@ before_install:
 
   - cd passing_apps/flask && docker-compose pull
   - docker-compose build
-  - docker-compose start
+  - docker-compose up
 
 install:
   - pip install -r requirements.txt
