@@ -11,5 +11,11 @@ def create_app(**config_overrides):
     app.register_blueprint(views_blueprint)
     app.config.update(config_overrides)
     Talisman(app, content_security_policy=csp)
-    return app
 
+    @app.after_request
+    def apply_caching(response):
+        response.headers["X-Permitted-Cross-Domain-Policies"] = "master-only"
+        response.headers["Expected-CT"] = "enforce"
+        return response
+
+    return app

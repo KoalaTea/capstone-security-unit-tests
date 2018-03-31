@@ -1,12 +1,12 @@
 \+HSTS enabled
 \+HTTPS is set up
-\+CSP set up on all pages? does it need to be all pages?
+\+CSP set up on all pages
 \+Crypto tests (no depreciated crypto) \\ done in bandit
 -flags on cookies
 -auth is thought of for everypage.
-\+CSRF? potentially complete?
+\+CSRF
 \lack of os command calls \\ done in bandit
-\+there is logging - logging is not to standard out \\ done for python
+\+there is logging - logging is not to standard out without a logging library \\ done for python
 \?two-auth enabled/set up \\ seems impossible for this project being during school
 ?security settings for in use applications
 \-default or debug accounts are disabled \\ per project tests
