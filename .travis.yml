@@ -25,11 +25,14 @@ install:
 jobs:
   include:
     - stage: tests
+      env: TEST=passing_python
       script:
         - python passing_apps/flask/run_tests.py
-    - script:
+    - env: TEST=base_python
+      script:
         - python base_web_apps/flask/run_tests.py
-    - script:
+    - env: TEST=base_java
+      script:
         - cd base_web_apps/java && docker-compose pull
         - docker-compose build
         - docker-compose up -d
