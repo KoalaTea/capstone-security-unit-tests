@@ -14,12 +14,11 @@ before_install:
   - sudo apt-get update -qq
   - docker-compose --version
   - sudo rm /usr/local/bin/docker-compose
+  - uname -s
+  - uname -m
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
-  - ls
-  - file docker-compose
   - sudo mv docker-compose /usr/local/bin/
-  - ls -l /usr/local/bin
 
 
 install:
@@ -36,7 +35,6 @@ jobs:
         - python base_web_apps/flask/run_tests.py
     - env: TEST=base_java
       script:
-        - ls -l /usr/local/bin 
         - cd base_web_apps/java && docker-compose pull
         - docker-compose build
         - docker-compose up -d
