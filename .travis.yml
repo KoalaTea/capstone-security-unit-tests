@@ -36,6 +36,7 @@ jobs:
         - python base_web_apps/flask/run_tests.py
     - env: TEST=base_java
       script:
+        - ls -l /usr/local/bin 
         - cd base_web_apps/java && docker-compose pull
         - docker-compose build
         - docker-compose up -d
