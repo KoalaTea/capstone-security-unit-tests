@@ -31,11 +31,11 @@ jobs:
     - env: TEST=base_python
       script:
         - python base_web_apps/flask/run_tests.py
-    - env: TEST=base_java
+    - env: TEST=base_java DOCKER_COMPOSE_VERSION=1.19.0
       script:
-        - cd base_web_apps/java
-        - docker build -t "base:java" -f DockerFile .
-        - docker run -p 8080:8080 base:java -d
+        - cd base_web_apps/java && docker-compose pull
+        - docker-compose build
+        - docker-compose up -d
         - cd ../..
         - sleep 2
         - python base_web_apps/java/run_tests.py
