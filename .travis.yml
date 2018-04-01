@@ -18,14 +18,23 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-  - cd passing_apps/flask && docker-compose pull
-  - docker-compose build
-  - docker-compose up -d
-
-  - cd ../..
 
 install:
   - pip install -r requirements.txt
 
-script:
-  - python passing_apps/flask/run_tests.py
+jobs:
+  include:
+    - stage: tests
+      script:
+        - python passing_apps/flask/run_tests.py
+      script:
+        - python base_web_apps/flask.run_tests.py
+      script:
+        - cd base_web_apps/java && docker-compose pull
+        - docker-compose build
+        - docker-compose up -d
+        - cd ../..
+        - python base_web_apps/java/run_tests.py
+
+
+
