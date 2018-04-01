@@ -28,7 +28,7 @@ jobs:
       script:
         - python passing_apps/flask/run_tests.py
     - script:
-        - python base_web_apps/flask.run_tests.py
+        - python base_web_apps/flask/run_tests.py
     - script:
         - cd base_web_apps/java && docker-compose pull
         - docker-compose build
