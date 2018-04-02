@@ -37,7 +37,6 @@ jobs:
         - docker-compose build
         - docker-compose up -d
         - cd ../..
-        - netstat -tulpn
         - sleep 10
         - python base_web_apps/java/run_tests.py
 

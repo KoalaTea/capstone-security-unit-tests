@@ -12,6 +12,7 @@ class HeadersTest(unittest.TestCase):
         self._headers()
 
     def _headers(self):
+        # may want to check what is in these headers too
         for h in self.resp.headers:
             if h[0] == 'X-Frame-Options':
                 if h[0] in self.headers:

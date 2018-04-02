@@ -34,13 +34,11 @@ class HeadersTest(unittest.TestCase):
                 else:
                     self.headers['X-Content-Type-Options'] = [h[1:]]
             elif h[0] == 'X-Permitted-Cross-Domain-Policies':
-                # might want to test for master-only
                 if h[0] in self.headers:
                     self.headers['X-Permitted-Cross-Domain-Policies'].append(h[1:])
                 else:
                     self.headers['X-Permitted-Cross-Domain-Policies'] = [h[1:]]
             elif h[0] == 'Expected-CT':
-                # might want to test for enforce, maybe just for report
                 if h[0] in self.headers:
                     self.headers['Expected-CT'].append(h[1:])
                 else:

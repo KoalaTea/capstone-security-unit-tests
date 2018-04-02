@@ -1,4 +1,5 @@
 import unittest
+import sys
 
 testmodules = [
     'tests.basic_web_test',
@@ -20,4 +21,6 @@ for t in testmodules:
         # else, just load all the test cases from the module.
         suite.addTest(unittest.defaultTestLoader.loadTestsFromName(t))
 
-unittest.TextTestRunner().run(suite)
+ret = not unittest.TextTestRunner().run(suite).wasSuccessful()
+sys.exit(ret)
+
