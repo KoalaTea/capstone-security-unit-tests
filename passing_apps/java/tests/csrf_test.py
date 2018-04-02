@@ -6,7 +6,7 @@ import requests
 class CSRFTest(unittest.TestCase):
     def setUp(self):
         self.client = requests
-        self.url = 'http://127.0.0.1'
+        self.url = 'http://127.0.0.1:8081'
 
     def csrf(self, endpoint, data, fail_text, success_text, fail_status_code, success_status_code):
             # assert token exists
