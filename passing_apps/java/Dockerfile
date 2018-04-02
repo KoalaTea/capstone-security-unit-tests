@@ -6,4 +6,4 @@ COPY /demo/ /app
 RUN ["mvn", "package"]
 ENTRYPOINT ["/usr/bin/java"]
 CMD ["-jar", "/app/target/javademo-0.1.0.jar"]
-EXPOSE 8081
+EXPOSE 8080
