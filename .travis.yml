@@ -27,6 +27,7 @@ jobs:
     - stage: tests
       env: TEST=passing_python
       script:
+        - find passing_apps/flask -name "*.py" -exec bandit -t B307,B304,B305,B505,B501,B502,B503,B504,B602,B603,B604,B605,B606,B607,B609 '{}' +
         - python passing_apps/flask/run_tests.py
     - env: TEST=pass_java DOCKER_COMPOSE_VERSION=1.19.0
       script:
@@ -38,6 +39,7 @@ jobs:
         - python passing_apps/java/run_tests.py
     - env: TEST=base_python
       script:
+        - find base_web_apps/flask -name "*.py" -exec bandit -t B307,B304,B305,B505,B501,B502,B503,B504,B602,B603,B604,B605,B606,B607,B609 '{}' +
         - python base_web_apps/flask/run_tests.py
     - env: TEST=base_java DOCKER_COMPOSE_VERSION=1.19.0
       script:
