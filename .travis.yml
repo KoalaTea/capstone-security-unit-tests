@@ -28,6 +28,14 @@ jobs:
       env: TEST=passing_python
       script:
         - python passing_apps/flask/run_tests.py
+    - env: TEST=pass_java DOCKER_COMPOSE_VERSION=1.19.0
+      script:
+        - cd base_web_apps/java && docker-compose pull
+        - docker-compose build
+        - docker-compose up -d
+        - cd ../..
+        - sleep 10
+        - python base_web_apps/java/run_tests.py
     - env: TEST=base_python
       script:
         - python base_web_apps/flask/run_tests.py
@@ -39,6 +47,3 @@ jobs:
         - cd ../..
         - sleep 10
         - python base_web_apps/java/run_tests.py
-
-
-
