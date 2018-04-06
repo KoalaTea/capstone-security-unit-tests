@@ -3,10 +3,10 @@ import sys
 
 testmodules = [
     'tests.basic_web_test',
-    #'tests.csrf_test',
-    #'tests.hsts_test',
-    #'tests.csp_test',
-    #'tests.headers_test'
+    'tests.csrf_test',
+    'tests.hsts_test',
+    'tests.csp_test',
+    'tests.headers_test'
     ]
 
 suite = unittest.TestSuite()
