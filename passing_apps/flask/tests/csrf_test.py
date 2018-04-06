@@ -17,7 +17,6 @@ class CSRFTest(unittest.TestCase):
             self.assertIsNotNone(csrf_token)
             # verify data fails without csrf_token
             resp = self.client.post(endpoint, data=data)
-            resp = self.client.post(endpoint, data=data)
             soup = BeautifulSoup(resp.data, 'html.parser')
             # assert fail conditions are present without csrf_token
             if fail_text:

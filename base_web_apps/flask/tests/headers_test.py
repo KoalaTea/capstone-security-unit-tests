@@ -21,9 +21,11 @@ class HeadersTest(unittest.TestCase):
                     self.headers['X-Frame-Options'] = [h[1:]]
             elif h[0] == 'X-XSS-Protection':
                 if h[0] in self.headers:
-                    self.headers['X-XSS-Protection'].append(h[1:])
+                    if '1;' in h[1]:
+                        self.headers['X-XSS-Protection'].append(h[1:])
                 else:
-                    self.headers['X-XSS-Protection'] = [h[1:]]
+                    if '1;' in h[1]:
+                        self.headers['X-XSS-Protection'] = [h[1:]]
             elif h[0] == 'Referrer-Policy':
                 if h[0] in self.headers:
                     self.headers['Referrer-Policy'].append(h[1:])
@@ -31,9 +33,11 @@ class HeadersTest(unittest.TestCase):
                     self.headers['Referrer-Policy'] = [h[1:]]
             elif h[0] == 'X-Content-Type-Options':
                 if h[0] in self.headers:
-                    self.headers['X-Content-Type-Options'].append(h[1:])
+                    if 'nosniff' in h[1]:
+                        self.headers['X-Content-Type-Options'].append(h[1:])
                 else:
-                    self.headers['X-Content-Type-Options'] = [h[1:]]
+                    if 'nosniff' in h[1]:
+                        self.headers['X-Content-Type-Options'] = [h[1:]]
             elif h[0] == 'X-Permitted-Cross-Domain-Policies':
                 if h[0] in self.headers:
                     self.headers['X-Permitted-Cross-Domain-Policies'].append(h[1:])

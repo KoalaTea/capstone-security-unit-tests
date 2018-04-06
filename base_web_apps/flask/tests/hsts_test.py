@@ -12,10 +12,11 @@ class HSTSTest(unittest.TestCase):
         # check each header to see if one is HSTS
         hsts_headers = [h for h in resp.headers if h[0] == 'Strict-Transport-Security']
         self.assertTrue(hsts_headers)
+        self.assertTrue("max-age" in hsts_headers[0][1])
 
     def cert_pinning(self, resp):
         # TODO expand I do not have an actual cert so I will defer this one this will raise
-        # an error and get caught by the framework if it fails
+        # an error and get caught by the framework if it fails HKPK is being depreciated
         resp = self.client.get('/', base_url='https://localhost', cert=('/path/server.crt',
                                '/path/key'))
         hsts_headers = [h for h in resp.headers if h[0] == 'Public-Key-Pins']

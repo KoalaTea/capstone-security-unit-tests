@@ -12,7 +12,7 @@ class CSRFTest(unittest.TestCase):
             # assert token exists
             resp = self.client.get(self.url + endpoint)
             soup = BeautifulSoup(resp.data, 'html.parser')
-            csrf_token = soup.find('input', {'id': 'csrf_token'})
+            csrf_token = soup.find('input', {'id': '_csrf'})
             self.assertIsNotNone(csrf_token)
             # verify data fails without csrf_token
             resp = self.client.post(self.url+endpoint, data=data)
@@ -48,7 +48,7 @@ class CSRFTest(unittest.TestCase):
         # pages that will be tested
         pages = [
                 {'endpoint': '/add', 'data': {'data': 'test'}, 'fail_text': 'failed',
-                 'success_text': 'success', 'fail_status_code': None, 'success_status_code': None}
+                 'success_text': 'success', 'fail_status_code': 403, 'success_status_code': 200}
             ]
         for page in pages:
             self.csrf(page['endpoint'], page['data'], page['fail_text'], page['success_text'],
