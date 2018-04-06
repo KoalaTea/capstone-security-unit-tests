@@ -5,19 +5,19 @@ import requests
 
 class CSRFTest(unittest.TestCase):
     def setUp(self):
-        self.client = requests
+        self.client = requests.Session()
         self.url = 'http://127.0.0.1:8081'
 
     def csrf(self, endpoint, data, fail_text, success_text, fail_status_code, success_status_code):
             # assert token exists
             resp = self.client.get(self.url + endpoint)
-            soup = BeautifulSoup(resp.data, 'html.parser')
-            csrf_token = soup.find('input', {'id': '_csrf'})
+            soup = BeautifulSoup(resp.content, 'html.parser')
+            csrf_token = soup.find('input', {'name': '_csrf'})
             self.assertIsNotNone(csrf_token)
             # verify data fails without csrf_token
             resp = self.client.post(self.url+endpoint, data=data)
             resp = self.client.post(self.url+endpoint, data=data)
-            soup = BeautifulSoup(resp.data, 'html.parser')
+            soup = BeautifulSoup(resp.content, 'html.parser')
             # assert fail conditions are present without csrf_token
             if fail_text:
                 self.assertIsNotNone(soup.find(text=re.compile(fail_text)))
@@ -29,9 +29,9 @@ class CSRFTest(unittest.TestCase):
             if success_status_code:
                 self.assertNotEqual(resp.status_code, success_status_code)
             # verify csrf token works
-            data['csrf_token'] = csrf_token['value']
-            resp = self.client.post(self.url+endpoint, data=data, follow_redirects=True)
-            soup = BeautifulSoup(resp.data, 'html.parser')
+            data['_csrf'] = csrf_token['value']
+            resp = self.client.post(self.url+endpoint, data=data)
+            soup = BeautifulSoup(resp.content, 'html.parser')
             # assert success conditions are present with csrf_token
             if success_text:
                 self.assertIsNotNone(soup.find(text=re.compile(success_text)))
@@ -47,7 +47,7 @@ class CSRFTest(unittest.TestCase):
     def test_csrf(self):
         # pages that will be tested
         pages = [
-                {'endpoint': '/add', 'data': {'data': 'test'}, 'fail_text': 'failed',
+                {'endpoint': '/add', 'data': {'data': 'test'}, 'fail_text': None,
                  'success_text': 'success', 'fail_status_code': 403, 'success_status_code': 200}
             ]
         for page in pages:

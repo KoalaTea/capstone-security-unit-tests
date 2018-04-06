@@ -7,7 +7,7 @@ class BasicWebTest(unittest.TestCase):
         self.url = "http://127.0.0.1:8081"
 
     def test_index(self):
-        resp = self.client.get(self.url+'/index')
+        resp = self.client.get(self.url+'/')
         self.assertEqual(resp.status_code, 200)
 
 if __name__ == '__main__':
