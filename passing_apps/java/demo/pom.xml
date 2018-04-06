@@ -18,8 +18,25 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-    </dependencies>
-
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+			    <groupId>org.springframework.security</groupId>
+			    <artifactId>spring-security-taglibs</artifactId>
+			    <exclusions>
+			      <exclusion>
+					    <groupId>org.springframework.security</groupId>
+					    <artifactId>spring-security-acl</artifactId>
+				    </exclusion>
+			    </exclusions>
+        </dependency>
+  </dependencies>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -47,4 +64,3 @@
         </pluginRepository>
     </pluginRepositories>
 </project>
-
