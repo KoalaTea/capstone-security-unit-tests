@@ -24,6 +24,9 @@ public class DemoCSRFFilter extends OncePerRequestFilter {
             updateCookie(request, response, "CSRF-TOKEN", csrf.getToken());
             updateCookie(request, response, "CSRF-HEADER", csrf.getHeaderName());
         }
+        response.addHeader("Expected-CT", "enforce");
+        response.addHeader("X-Permitted-Cross-Domain-Policies", "master-only");
+        response.addHeader("Referrer-Policy", "strict-origin-when-cross-origin");
         filterChain.doFilter(request, response);
     }
 

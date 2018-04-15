@@ -6,7 +6,7 @@ import requests
 class HSTSTest(unittest.TestCase):
     def setUp(self):
         self.client = requests
-        self.url = "https://127.0.0.1:8080"
+        self.url = "https://127.0.0.1:8081"
 
     def hsts(self, resp):
         # check each header to see if one is HSTS

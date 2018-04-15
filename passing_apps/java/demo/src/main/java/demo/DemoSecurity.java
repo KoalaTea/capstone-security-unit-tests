@@ -20,6 +20,7 @@ public class DemoSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
       http.authorizeRequests().anyRequest().permitAll();
+      http.headers().contentSecurityPolicy("default-src 'self';");
       http.addFilterAfter(new DemoCSRFFilter(), CsrfFilter.class);
       /*
         http.authorizeRequests().anyMatches("/**").permitAll();

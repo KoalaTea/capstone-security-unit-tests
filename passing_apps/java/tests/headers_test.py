@@ -9,7 +9,6 @@ class HeadersTest(unittest.TestCase):
         self.url = "http://127.0.0.1:8081"
         self.resp = self.client.get(self.url+'/')
         self.headers = {}
-        self._headers()
         #embed()
 
     def test_X_FRAME_OPTIONS(self):
@@ -17,12 +16,14 @@ class HeadersTest(unittest.TestCase):
 
     def test_X_XSS_Protection(self):
         self.assertTrue('X-XSS-Protection' in self.resp.headers)
+        self.assertTrue('1;' in self.resp.headers['X-XSS-Protection'])
 
     def test_Referrer_Policy(self):
         self.assertTrue('Referrer-Policy' in self.resp.headers)
 
     def test_X_Content_Type_Options(self):
         self.assertTrue('X-Content-Type-Options' in self.resp.headers)
+        self.assertTrue('nosniff' in self.resp.headers['X-Content-Type-Options'])
 
     def test_X_Permitted_Cross_Domain_Policies(self):
         self.assertTrue('X-Permitted-Cross-Domain-Policies' in self.resp.headers)
